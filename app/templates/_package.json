@@ -1,5 +1,18 @@
 {
-  "name": "package",
-  "version": "0.0.0",
-  "dependencies": {}
+  "name": "mgo",
+  "version": "1.0.0",
+  "dependencies": {
+    "grunt": "~0.4.4",
+    "grunt-contrib-requirejs": "~0.4.3",
+    "grunt-contrib-uglify": "~0.4.0",
+    "grunt-http-server": "~0.0.5",
+    "grunt-contrib-watch": "~0.6.1",
+    "grunt-contrib-less": "~0.11.0"
+  },
+
+  "components": {
+    "demo": {
+      "version": "1.0.0"
+    }
+  }
 }

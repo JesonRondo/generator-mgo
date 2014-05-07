@@ -40,16 +40,18 @@ var MgoGenerator = yeoman.generators.Base.extend({
   },
 
   app: function () {
-    this.mkdir('app');
-    this.mkdir('app/templates');
-
+    this.directory('common', 'common');
+    this.directory('components', 'components');
+    this.directory('views', 'views');
     this.copy('_package.json', 'package.json');
     this.copy('_bower.json', 'bower.json');
+    this.copy('_.gitignore', '.gitignore');
+    this.copy('_Gruntfile.js', 'Gruntfile.js');
   },
 
   projectfiles: function () {
-    this.copy('editorconfig', '.editorconfig');
-    this.copy('jshintrc', '.jshintrc');
+    // this.copy('editorconfig', '.editorconfig');
+    // this.copy('jshintrc', '.jshintrc');
   }
 });
 
