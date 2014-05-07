@@ -1,4 +1,4 @@
-# generator-mgo [![Build Status](https://secure.travis-ci.org/JesonRondo/generator-mgo.png?branch=master)](https://travis-ci.org/JesonRondo/generator-mgo)
+# generator-mgo
 
 > [Yeoman](http://yeoman.io) generator
 
