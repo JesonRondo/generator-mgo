@@ -11,7 +11,7 @@ var MgoGenerator = yeoman.generators.Base.extend({
 
     this.on('end', function () {
       if (!this.options['skip-install']) {
-        this.installDependencies();
+        // this.installDependencies();
       }
     });
   },
@@ -20,33 +20,48 @@ var MgoGenerator = yeoman.generators.Base.extend({
     var done = this.async();
 
     // have Yeoman greet the user
-    this.log(this.yeoman);
+    var yaya = '\
+\n           ' + chalk.yellow('..:+?++=++==+..') +'\
+\n        ' + chalk.yellow('.?++================~=.') +'\
+\n       ' + chalk.yellow('.?++=============~===~~,.') +'\
+\n       ' + chalk.yellow('I++===') +'NZ' + chalk.yellow('========') +'NZ' + chalk.yellow('~~~~~=.') +'\
+\n      ' + chalk.yellow('.7++=======+I7==~==~~~~~=.') +'\
+\n      ' + chalk.yellow('.I+$?++==') +'8D?::DD' + chalk.yellow('===++=~~~.') + '    .----------------------------.' +'\
+\n      ' + chalk.yellow('.I?+==~==') +'DDDNDDD' + chalk.yellow('=~~~~~~~~.') + '    | ' + chalk.yellow.bold('Remenber the running of us') + ' |' +'\
+\n     ' + chalk.yellow('..I+======') +'Z$$$$$Z~' + chalk.yellow('=~~~~~~~:') + '    |   ' + chalk.yellow.bold('under the setting sun,') + '   |' +'\
+\n  ' + chalk.yellow('..=~~=++======') +'Z$$$$7' + chalk.yellow('=~~~~~~~~=:.') + '  |       ' + chalk.yellow.bold('it\'s our youth') + '       |' +'\
+\n    ' + chalk.yellow('+=~=++===~~~') +'7$$$$' + chalk.yellow('=~~~~~~~~~~:~.') + ' \'____________________________\'' +'\
+\n       ' + chalk.yellow(',====~~~~~~~~~~~~~~~~:~~.') +'\
+\n       ' + chalk.yellow('.==~~~~~~~~~===~~~~~::~~.') +'\
+\n        ' + chalk.yellow('.~~~~~~~..   ..+=~~~::.') +'\
+\n        ' + chalk.yellow('...:,..         .:~~,..') +'\
+\n                           ' + chalk.yellow('.\'') +'\
+\n';
+    
+    this.log(yaya);
 
     // replace it with a short and sweet description of your generator
-    this.log(chalk.magenta('You\'re using the fantastic Mgo generator.'));
+    //this.log(chalk.magenta('You\'re using the fantastic Mgo generator.'));
 
     var prompts = [{
-      type: 'confirm',
-      name: 'someOption',
-      message: 'Would you like to enable this option?',
-      default: true
+      name: 'moduleName',
+      message: 'Enter the name of your cute module:'
     }];
 
     this.prompt(prompts, function (props) {
-      this.someOption = props.someOption;
+      this.moduleName = props.moduleName;
 
       done();
     }.bind(this));
   },
 
   app: function () {
-    this.directory('common', 'common');
-    this.directory('components', 'components');
-    this.directory('views', 'views');
     this.copy('_package.json', 'package.json');
-    this.copy('_bower.json', 'bower.json');
     this.copy('_.gitignore', '.gitignore');
     this.copy('_Gruntfile.js', 'Gruntfile.js');
+    this.copy('index.php', 'index.php');
+    this.copy('index.js', 'index.js');
+    this.copy('index.less', 'index.less');
   },
 
   projectfiles: function () {
