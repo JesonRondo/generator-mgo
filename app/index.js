@@ -46,7 +46,7 @@ var MgoGenerator = module.exports = yeoman.generators.Base.extend({
   },
 
   askFor: function() {
-    if (!this.name) {
+    if (!this.moduleDefault.name) {
       var cb = this.async();
 
       var prompts = [{
@@ -83,6 +83,15 @@ var MgoGenerator = module.exports = yeoman.generators.Base.extend({
         
         cb();
       }.bind(this));
+    } else {
+      this.name = 'foo';
+      this.version = this.moduleDefault.version;
+      this.desc = this.moduleDefault.desc;
+      this.repository = this.moduleDefault.repository;
+      this.author = this.moduleDefault.author;
+
+      var today = new Date;
+      this.time = [today.getFullYear(), today.getMonth() + 1 <= 9 ? '0' + (today.getMonth() + 1) : today.getDate(), today.getDate() + 1].join('-');
     }
   },
 
