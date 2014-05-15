@@ -1,20 +1,17 @@
 {
   "name": "generator-mgo",
-  "version": "0.0.0",
-  "description": "Yeoman generator",
+  "version": "1.0.0",
+  "description": "Build module",
   "license": "MIT",
   "main": "app/index.js",
   "repository": "JesonRondo/generator-mgo",
   "author": {
-    "name": "",
-    "email": "",
+    "name": "Vic",
+    "email": "pancnlz@gmail.com",
     "url": "https://github.com/JesonRondo"
   },
   "engines": {
     "node": ">=0.10.0"
-  },
-  "scripts": {
-    "test": "mocha"
   },
   "files": [
     "app"
@@ -25,9 +22,6 @@
   "dependencies": {
     "yeoman-generator": "~0.16.0",
     "chalk": "~0.4.0"
-  },
-  "devDependencies": {
-    "mocha": "*"
   },
   "peerDependencies": {
     "yo": ">=1.0.0"

@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "pc-demo": "~0.0.1",
+    "mobile-demo": "~0.0.1",
+  },
+}

@@ -1,73 +1,109 @@
 'use strict';
-var util = require('util');
-var path = require('path');
-var yeoman = require('yeoman-generator');
+
 var chalk = require('chalk');
+var yeoman = require('yeoman-generator');
 
+var MgoGenerator = module.exports = yeoman.generators.Base.extend({
 
-var MgoGenerator = yeoman.generators.Base.extend({
-  init: function () {
+  init: function() {
+
+    var yaya = chalk.yellow.bold([
+        "       _----------_       ",
+        "     /              \\     ",     
+        "    |                |    .----------------------------.",
+        "    |     o    o     |    | Remenber the running of us |",
+        "    |     ______     |    |   under the setting sun,   |",
+        "   /     |      |     \\   |       it\'s our youth       |",
+        "  |__     \\    /     __|  \'____________________________\'",
+        "    |      \\__/      |    ",
+        "    |      ____      |    ",
+        "    |    /      \\    |    ",
+        "    '---'        '---'    ",
+    ].join('\n'));
+
+    this.log(yaya);
+
+    // default
+    this.moduleDefault = {
+      name: this.arguments[0] || '',
+      version: '1.0.0',
+      desc: 'mogu module',
+      repository: 'http://gitlab.mogujie.org',
+      author: 'mogu f2e'
+    };
+
+    this.prefix = this.arguments[1] ? this.arguments[1] + '/' : '';
     this.pkg = require('../package.json');
 
-    this.on('end', function () {
-      if (!this.options['skip-install']) {
-        // this.installDependencies();
-      }
+    this.on('end', function() {
+      this.log('\nRunning ' + chalk.yellow.bold('npm install & bo install') + ' for you to install the required dependencies\n');
+
+      process.chdir(this.prefix + this.name.replace(/\s/img, '_'));
+
+      this.runInstall('npm');
+      this.runInstall('bo');
     });
   },
 
-  askFor: function () {
-    var done = this.async();
+  askFor: function() {
+    if (!this.name) {
+      var cb = this.async();
 
-    // have Yeoman greet the user
-    var yaya = '\
-\n           ' + chalk.yellow('..:+?++=++==+..') +'\
-\n        ' + chalk.yellow('.?++================~=.') +'\
-\n       ' + chalk.yellow('.?++=============~===~~,.') +'\
-\n       ' + chalk.yellow('I++===') +'NZ' + chalk.yellow('========') +'NZ' + chalk.yellow('~~~~~=.') +'\
-\n      ' + chalk.yellow('.7++=======+I7==~==~~~~~=.') +'\
-\n      ' + chalk.yellow('.I+$?++==') +'8D?::DD' + chalk.yellow('===++=~~~.') + '    .----------------------------.' +'\
-\n      ' + chalk.yellow('.I?+==~==') +'DDDNDDD' + chalk.yellow('=~~~~~~~~.') + '    | ' + chalk.yellow.bold('Remenber the running of us') + ' |' +'\
-\n     ' + chalk.yellow('..I+======') +'Z$$$$$Z~' + chalk.yellow('=~~~~~~~:') + '    |   ' + chalk.yellow.bold('under the setting sun,') + '   |' +'\
-\n  ' + chalk.yellow('..=~~=++======') +'Z$$$$7' + chalk.yellow('=~~~~~~~~=:.') + '  |       ' + chalk.yellow.bold('it\'s our youth') + '       |' +'\
-\n    ' + chalk.yellow('+=~=++===~~~') +'7$$$$' + chalk.yellow('=~~~~~~~~~~:~.') + ' \'____________________________\'' +'\
-\n       ' + chalk.yellow(',====~~~~~~~~~~~~~~~~:~~.') +'\
-\n       ' + chalk.yellow('.==~~~~~~~~~===~~~~~::~~.') +'\
-\n        ' + chalk.yellow('.~~~~~~~..   ..+=~~~::.') +'\
-\n        ' + chalk.yellow('...:,..         .:~~,..') +'\
-\n                           ' + chalk.yellow('.\'') +'\
-\n';
+      var prompts = [{
+        name: 'name',
+        message: 'Enter the name of your cute module:',
+        default: 'foo'
+      }, {
+        name: 'version',
+        message: 'Enter the version of your cute module:',
+        default: this.moduleDefault.version
+      }, {
+        name: 'desc',
+        message: 'Enter the description of your cute module:',
+        default: this.moduleDefault.desc
+      }, {
+        name: 'repository',
+        message: 'Enter the repository of your cute module:',
+        default: this.moduleDefault.repository
+      }, {
+        name: 'author',
+        message: 'Finally enter the your name ^ ^:',
+        default: this.moduleDefault.author
+      }];
+
+      this.prompt(prompts, function(props) {
+        this.name = props.name;
+        this.version = props.version;
+        this.desc = props.desc;
+        this.repository = props.repository;
+        this.author = props.author;
+
+        var today = new Date;
+        this.time = [today.getFullYear(), today.getMonth() + 1 <= 9 ? '0' + (today.getMonth() + 1) : today.getDate(), today.getDate() + 1].join('-');
+        
+        cb();
+      }.bind(this));
+    }
+  },
+
+  app: function() {
+    var mpath = this.prefix + this.name.replace(/\s/img, '_');
+
+    this.mkdir(mpath);
     
-    this.log(yaya);
-
-    // replace it with a short and sweet description of your generator
-    //this.log(chalk.magenta('You\'re using the fantastic Mgo generator.'));
-
-    var prompts = [{
-      name: 'moduleName',
-      message: 'Enter the name of your cute module:'
-    }];
-
-    this.prompt(prompts, function (props) {
-      this.moduleName = props.moduleName;
-
-      done();
-    }.bind(this));
+    this.template('index.php', mpath + '/index.php');
+    this.template('index.less', mpath + '/index.less');
+    this.template('index.js', mpath + '/index.js');
+    this.template('README.md', mpath + '/README.md');
   },
 
-  app: function () {
-    this.copy('_package.json', 'package.json');
-    this.copy('_.gitignore', '.gitignore');
-    this.copy('_Gruntfile.js', 'Gruntfile.js');
-    this.copy('index.php', 'index.php');
-    this.copy('index.js', 'index.js');
-    this.copy('index.less', 'index.less');
-  },
+  projectfiles: function() {
+    var mpath = this.prefix + this.name.replace(/\s/img, '_');
 
-  projectfiles: function () {
-    // this.copy('editorconfig', '.editorconfig');
-    // this.copy('jshintrc', '.jshintrc');
+    this.template('_package.json', mpath + '/package.json');
+    this.copy('_bo.json', mpath + '/bo.json');
+    this.copy('_Gruntfile.js', mpath + '/Gruntfile.json');
+    this.copy('_.gitignore', mpath + '/.gitignore');
   }
-});
 
-module.exports = MgoGenerator;
+});

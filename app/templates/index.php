@@ -1,1 +1,1 @@
-<div></div>
+<p>hello <%= author %></p>
