@@ -1,10 +1,9 @@
-## <%= _.slugify(name) %>
+<%= _.slugify(name) %>
+===========
 
 <%= desc %>
 
-## Misc
+## License
 
-`repository`: <%= repository %>
-`author`: <%= author %>
-`create time`: <%= time %>
-`version`: <%= version %>
+Copyright (c) <%= time %> <%= author %>
+Licensed under the MIT license.

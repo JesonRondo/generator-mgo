@@ -1,6 +1,13 @@
 {
-  "dependencies": {
-    "pc-demo": "~0.0.1",
-    "mobile-demo": "~0.0.1",
+  "name": "<%= _.slugify(name) %>",
+  "version": "<%= version %>",
+  "description": "<%= desc %>",
+  "repository": {
+    "type": "git",
+    "url": "<%= repository %>"
   },
+  "keywords": [
+    "<%= _.slugify(name) %>"
+  ],
+  "license": "MIT"
 }

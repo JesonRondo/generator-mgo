@@ -13,7 +13,7 @@ var MgoGenerator = module.exports = yeoman.generators.Base.extend({
         "    |                |    .----------------------------.",
         "    |     o    o     |    | Remenber the running of us |",
         "    |     ______     |    |   under the setting sun,   |",
-        "   /     |      |     \\   |       it\'s our youth       |",
+        "   /     |      |     \\   |    it\'s our lost youth    |",
         "  |__     \\    /     __|  \'____________________________\'",
         "    |      \\__/      |    ",
         "    |      ____      |    ",
