@@ -1,0 +1,1 @@
+<p>ushop hello <%= author %></p>

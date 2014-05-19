@@ -1,0 +1,1 @@
+<p>empty hello <%= author %></p>
