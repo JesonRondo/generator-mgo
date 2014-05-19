@@ -33,5 +33,5 @@ $ yo mgo
 
 ## License
 
-Copyright (c) 2014-05-19 Vic
+Copyright (c) 2014-05-19 Vic  
 Licensed under the MIT license.

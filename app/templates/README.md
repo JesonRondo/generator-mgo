@@ -5,5 +5,5 @@
 
 ## License
 
-Copyright (c) <%= time %> <%= author %>
+Copyright (c) <%= time %> <%= author %>  
 Licensed under the MIT license.
