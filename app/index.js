@@ -11,7 +11,7 @@ var MgoGenerator = module.exports = yeoman.generators.Base.extend({
 
     var yaya = chalk.yellow.bold([
         "       _----------_       ",
-        "     /              \\     ",     
+        "     /              \\     ",
         "    |                |    .----------------------------.",
         "    |     o    o     |    | Remenber the running of us |",
         "    |     ______     |    |   under the setting sun,   |",
@@ -26,16 +26,31 @@ var MgoGenerator = module.exports = yeoman.generators.Base.extend({
     this.log(yaya);
 
     // default
-    this.moduleDefault = {
-      name: this.arguments[0] || '',
-      version: '1.0.0',
-      desc: 'mogu module',
-      repository: 'http://gitlab.mogujie.org',
-      type: 'default',
-      author: 'mogu f2e'
+    this.params = {
+       'name': ''
+      ,'path': ''
+      ,'desc': 'mogu module'
+      ,'repo': 'http://gitlab.mogujie.org'
+      ,'type': 'default'
+      ,'author': 'mogu f2e'
+      ,'version': '1.0.0'
+      ,'sizetype': '1200&960'
     };
 
-    this.prefix = this.arguments[1] ? this.arguments[1] + '/' : '';
+    //yo mgo name:$2 path:$3 desc:$4 repo:$5 type:$6 sizetype:$7 author:$8
+    var args = Array.prototype.slice.call(arguments);
+
+    for (var i = 0, len = args.length; i < len; i++) {
+
+      var k = args[i].substr(0, args[i].indexOf(':'))
+      var v = args[i].substr(args[i].indexOf(':') + 1)
+
+      if (this.params[k] !== undefined) {
+        this.params[k] = v;
+      }
+    }
+
+    this.prefix = this.params['path'] ? this.params['path'] + '/' : '';
 
     this.on('end', function() {
       this.log('\nRunning ' + chalk.yellow.bold('npm install & bo install') + ' for you to install the required dependencies\n');
@@ -48,7 +63,24 @@ var MgoGenerator = module.exports = yeoman.generators.Base.extend({
   },
 
   askFor: function() {
-    if (!this.moduleDefault.name) {
+    var copyValue = function(that, props) {
+      that.name = props.name;
+      that.desc = props.desc;
+      that.repo = props.repo;
+      that.type = props.type;
+      that.author = props.author;
+      that.version = props.version;
+      that.sizetype = props.sizetype;
+
+      var today = new Date;
+      that.time = [
+        today.getFullYear(),
+        today.getMonth() + 1 <= 9 ? '0' + (today.getMonth() + 1) : today.getDate(),
+        today.getDate() + 1
+      ].join('-');
+    };
+console.log(this.params);
+    if (!this.params.name) {
       var cb = this.async();
 
       var prompts = [{
@@ -64,48 +96,41 @@ var MgoGenerator = module.exports = yeoman.generators.Base.extend({
           'ushop',
           'empty'
         ],
-        default: this.moduleDefault.type
+        default: this.params.type
+      }, {
+        type: 'list',
+        name: 'sizetype',
+        message: 'What\'s sizetype do you want to choices:',
+        choices: [
+          '1200&960',
+          '1200',
+          '960'
+        ],
+        default: this.params.sizetype
       }, {
         name: 'version',
         message: 'Enter the version of your cute module:',
-        default: this.moduleDefault.version
+        default: this.params.version
       }, {
         name: 'desc',
         message: 'Enter the description of your cute module:',
-        default: this.moduleDefault.desc
+        default: this.params.desc
       }, {
-        name: 'repository',
+        name: 'repo',
         message: 'Enter the repository of your cute module:',
-        default: this.moduleDefault.repository
+        default: this.params.repo
       }, {
         name: 'author',
         message: 'Finally enter the your name ^ ^:',
-        default: this.moduleDefault.author
+        default: this.params.author
       }];
 
       this.prompt(prompts, function(props) {
-        this.name = props.name;
-        this.desc = props.desc;
-        this.type = props.type;
-        this.author = props.author;
-        this.version = props.version;
-        this.repository = props.repository;
-
-        var today = new Date;
-        this.time = [today.getFullYear(), today.getMonth() + 1 <= 9 ? '0' + (today.getMonth() + 1) : today.getDate(), today.getDate() + 1].join('-');
-        
+        copyValue(this, props);
         cb();
       }.bind(this));
     } else {
-      this.name = this.moduleDefault.name;
-      this.desc = this.moduleDefault.desc;
-      this.type = this.moduleDefault.type;
-      this.author = this.moduleDefault.author;
-      this.version = this.moduleDefault.version;
-      this.repository = this.moduleDefault.repository;
-
-      var today = new Date;
-      this.time = [today.getFullYear(), today.getMonth() + 1 <= 9 ? '0' + (today.getMonth() + 1) : today.getDate(), today.getDate() + 1].join('-');
+      copyValue(this, this.params);
     }
   },
 
@@ -113,7 +138,7 @@ var MgoGenerator = module.exports = yeoman.generators.Base.extend({
     var mpath = this.prefix + this.name.replace(/\s/img, '_');
 
     this.mkdir(mpath);
-    
+
     switch(this.type) {
       case 'ushop':
         this.template('index_ushop.php', mpath + '/index.php');
@@ -127,6 +152,7 @@ var MgoGenerator = module.exports = yeoman.generators.Base.extend({
         this.template('index.php', mpath + '/index.php');
         break;
     }
+    this.template('content.php', mpath + '/content.php');
     this.template('index.less', mpath + '/index.less');
     this.template('index.js', mpath + '/index.js');
     this.template('README.md', mpath + '/README.md');

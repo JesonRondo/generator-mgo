@@ -4,7 +4,7 @@
   "description": "<%= desc %>",
   "repository": {
     "type": "git",
-    "url": "<%= repository %>"
+    "url": "<%= repo %>"
   },
   "keywords": [
     "<%= _.slugify(name) %>"

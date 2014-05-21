@@ -1,9 +1,8 @@
 {
   "name": "<%= _.slugify(name) %>",
   "description": "<%= desc %>",
-  "repository": "<%= repository %>",
+  "repository": "<%= repo %>",
 
   "dependencies": {
-    "grunt": "~0.4.4"
   }
 }
