@@ -1,1 +1,1 @@
-<p>default hello <%= author %></p>
+<p>default hello <%= name %></p>
