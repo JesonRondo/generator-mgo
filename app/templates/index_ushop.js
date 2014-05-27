@@ -5,8 +5,8 @@
  */
 define([
     '/common/script/base.js',
-    '/common/header/index.js',
-    '/common/footer/index.js'
+    '/common/header_ushop/index.js',
+    '/common/footer_ushop/index.js'
 ], function(base, header, footer) {
 
 });

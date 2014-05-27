@@ -79,7 +79,7 @@ var MgoGenerator = module.exports = yeoman.generators.Base.extend({
         today.getDate() + 1
       ].join('-');
     };
-console.log(this.params);
+
     if (!this.params.name) {
       var cb = this.async();
 
@@ -142,20 +142,23 @@ console.log(this.params);
     switch(this.type) {
       case 'ushop':
         this.template('index_ushop.php', mpath + '/index.php');
+        this.template('index_ushop.js', mpath + '/index.js');
         break;
 
       case 'empty':
         this.template('index_empty.php', mpath + '/index.php');
+        this.template('index_empty.js', mpath + '/index.js');
         break;
 
       default:
         this.template('index.php', mpath + '/index.php');
+        this.template('index.js', mpath + '/index.js');
         break;
     }
     this.template('content.php', mpath + '/content.php');
     this.template('index.less', mpath + '/index.less');
-    this.template('index.js', mpath + '/index.js');
     this.template('README.md', mpath + '/README.md');
+    this.template('data.php', mpath + '/data.php');
   },
 
   projectfiles: function() {
