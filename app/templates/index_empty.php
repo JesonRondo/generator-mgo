@@ -2,16 +2,9 @@
     /**
      * 本地开发环境的ROOTPATH处理
      */
-    $localSysPath = $_SERVER['DOCUMENT_ROOT'];
-
-    if (stristr($localSysPath, 'walkman')) {
-        $GLOBALS['ROOTPATH'] = $localSysPath;
-    } else {
-        $GLOBALS['ROOTPATH'] = $localSysPath . '/walkman';
-    }
+    $GLOBALS['ROOTPATH'] = $_SERVER['DOCUMENT_ROOT'];
 
     require $GLOBALS['ROOTPATH'] . '/system/less.php';
-
     $less = new lessc;
 ?>
 <!doctype html>
@@ -27,7 +20,7 @@
 </head>
 <body>
 
-    <?php include(dirname(__FILE__) . 'data.php'); ?>
+    <?php include(dirname(__FILE__) . '/data.php'); ?>
 
     <% if (sizetype.indexOf('1200') >= 0) { %>
     <div class="fm1200">

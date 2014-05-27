@@ -1,1 +1,1 @@
-<p>default hello <%= name %></p>
+<p><?php echo $welcome; ?> <%= name %></p>

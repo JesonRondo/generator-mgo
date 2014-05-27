@@ -6,4 +6,5 @@
 
 <?php
     // data here
+    $welcome = 'Hello';
 ?>
