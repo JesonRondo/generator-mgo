@@ -54,7 +54,13 @@
 
     <?php include($GLOBALS['ROOTPATH'] . '/common/conf/require.php'); ?>
     <script>
-        require(['./index']);
+        require([
+            '/common/script/base.js',
+            '/common/header/index.js',
+            '/common/footer/index.js'
+        ], function() {
+            require(['./index']);
+        });
     </script>
 
 </body>

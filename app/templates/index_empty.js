@@ -3,8 +3,6 @@
  * @desc <%= desc %>
  * @create <%= time %> @<%= author %>
  */
-define([
-    '/common/script/base.js'
-], function(base) {
+define(function() {
 
 });
