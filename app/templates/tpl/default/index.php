@@ -55,11 +55,14 @@
     <?php include($GLOBALS['ROOTPATH'] . '/common/conf/require.php'); ?>
     <script>
         require([
-            '/common/script/base.js',
-            '/common/template/header/index.js',
-            '/common/template/footer/index.js'
+            '/common/script/base.js'
         ], function() {
-            require(['./index']);
+            require([
+                '/common/template/header/index.js',
+                '/common/template/footer/index.js'
+            ], function() {
+                require(['./index']);
+            });
         });
     </script>
 
