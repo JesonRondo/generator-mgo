@@ -15,9 +15,9 @@
     <style>
         <?php echo $less->compileFile($GLOBALS['ROOTPATH'] . '/common/style/reset.less'); ?>
         <?php echo $less->compileFile($GLOBALS['ROOTPATH'] . '/common/style/global.less'); ?>
-        <?php echo $less->compileFile($GLOBALS['ROOTPATH'] . '/common/header/index.less'); ?>
+        <?php echo $less->compileFile($GLOBALS['ROOTPATH'] . '/common/template/header_ushop/index.less'); ?>
         <?php echo $less->compileFile('./index.less'); ?>
-        <?php echo $less->compileFile($GLOBALS['ROOTPATH'] . '/common/footer/index.less'); ?>
+        <?php echo $less->compileFile($GLOBALS['ROOTPATH'] . '/common/template/footer_ushop/index.less'); ?>
     </style>
 </head>
 <body>
@@ -29,7 +29,7 @@
     <% } else { %>
     <div class="ht960">
     <% } %>
-        <?php include($GLOBALS['ROOTPATH'] . '/common/header/content.php'); ?>
+        <?php include($GLOBALS['ROOTPATH'] . '/common/template/header_ushop/content.php'); ?>
     </div>
 
     <% if (sizetype.indexOf('1200') >= 0) { %>
@@ -49,15 +49,15 @@
     <% } else { %>
     <div class="ht960">
     <% } %>
-        <?php include($GLOBALS['ROOTPATH'] . '/common/footer/content.php'); ?>
+        <?php include($GLOBALS['ROOTPATH'] . '/common/template/footer_ushop/content.php'); ?>
     </div>
 
     <?php include($GLOBALS['ROOTPATH'] . '/common/conf/require.php'); ?>
     <script>
         require([
             '/common/script/base.js',
-            '/common/header/index.js',
-            '/common/footer/index.js'
+            '/common/template/header_ushop/index.js',
+            '/common/template/footer_ushop/index.js'
         ], function() {
             require(['./index']);
         });

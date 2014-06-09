@@ -13,7 +13,7 @@ var MgoGenerator = module.exports = yeoman.generators.Base.extend({
         "       _----------_       ",
         "     /              \\     ",
         "    |                |    .----------------------------.",
-        "    |     o    o     |    | Remenber the running of us |",
+        "    |     o    o     |    | Remember the running of us |",
         "    |     ______     |    |   under the setting sun,   |",
         "   /     |      |     \\   |    it\'s our lost youth    |",
         "  |__     \\    /     __|  \'____________________________\'",
@@ -94,7 +94,8 @@ var MgoGenerator = module.exports = yeoman.generators.Base.extend({
         choices: [
           'default',
           'ushop',
-          'empty'
+          'empty',
+          'cps'
         ],
         default: this.params.type
       }, {
@@ -141,22 +142,25 @@ var MgoGenerator = module.exports = yeoman.generators.Base.extend({
 
     switch(this.type) {
       case 'ushop':
-        this.template('index_ushop.php', mpath + '/index.php');
-        this.template('index_ushop.js', mpath + '/index.js');
+        this.template('tpl/ushop/index.php', mpath + '/index.php');
         break;
 
       case 'empty':
-        this.template('index_empty.php', mpath + '/index.php');
-        this.template('index_empty.js', mpath + '/index.js');
+        this.template('tpl/empty/index.php', mpath + '/index.php');
+        break;
+
+      case 'cps':
+        this.template('tpl/cps/index.php', mpath + '/index.php');
         break;
 
       default:
-        this.template('index.php', mpath + '/index.php');
-        this.template('index.js', mpath + '/index.js');
+        this.template('tpl/default/index.php', mpath + '/index.php');
         break;
     }
+
     this.template('content.php', mpath + '/content.php');
     this.template('index.less', mpath + '/index.less');
+    this.template('index.js', mpath + '/index.js');
     this.template('README.md', mpath + '/README.md');
     this.template('data.php', mpath + '/data.php');
   },
