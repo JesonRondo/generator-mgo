@@ -6,6 +6,12 @@
     "type": "git",
     "url": "<%= repo %>"
   },
+  "GruntConfig": {
+    "lessPath": "./index.less",
+    "jsPath": "./index.js",
+    "outputCss": "public/demo/tmp.css",
+    "outputJs": "public/demo/tmp.js"
+  },
   "keywords": [
     "<%= _.slugify(name) %>"
   ],
