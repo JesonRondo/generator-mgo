@@ -22,6 +22,7 @@
 </head>
 <body>
 
+    <?php include($GLOBALS['ROOTPATH'] . '/common/template/header_cps/data.php'); ?>
     <?php include(dirname(__FILE__) . '/data.php'); ?>
 
     <% if (sizetype.indexOf('1200') >= 0) { %>
