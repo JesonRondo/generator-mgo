@@ -6,11 +6,15 @@
     "type": "git",
     "url": "<%= repo %>"
   },
+  "username": "<%= author %>",
   "GruntConfig": {
     "lessPath": "./index.less",
     "jsPath": "./index.js",
-    "outputCss": "public/demo/tmp.css",
-    "outputJs": "public/demo/tmp.js"
+    "outputCss": "public/demo/tmp/pkg-tmp.css",
+    "outputJs": "public/demo/tmp/pkg-tmp.js",
+    "imgInputPath": "imgs"
+  },
+  "dependencies": {
   },
   "keywords": [
     "<%= _.slugify(name) %>"
