@@ -1,6 +1,6 @@
 {
   "name": "generator-mgo",
-  "version": "0.6.4",
+  "version": "0.6.5",
   "description": "MOGU F2E module scaffold",
   "license": "MIT",
   "main": "app/index.js",
