@@ -11,8 +11,7 @@
     "lessPath": "./index.less",
     "jsPath": "./index.js",
     "outputCss": "public/demo/tmp/pkg-tmp.css",
-    "outputJs": "public/demo/tmp/pkg-tmp.js",
-    "imgInputPath": "imgs"
+    "outputJs": "public/demo/tmp/pkg-tmp.js"
   },
   "dependencies": {
   },
