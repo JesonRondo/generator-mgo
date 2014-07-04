@@ -171,7 +171,7 @@ var MgoGenerator = module.exports = yeoman.generators.Base.extend({
     this.template('_package.json', mpath + '/package.json');
     this.copy('_bo.json', mpath + '/bo.json');
     this.copy('_Gruntfile.js', mpath + '/Gruntfile.js');
-    this.copy('_.gitignore', mpath + '/.gitignore');
+    // this.copy('_.gitignore', mpath + '/.gitignore');
   }
 
 });

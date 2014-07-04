@@ -5,4 +5,8 @@
  */
 define(function() {
 
+(function() {
+    // code here, code here, here here
+}());
+
 });
