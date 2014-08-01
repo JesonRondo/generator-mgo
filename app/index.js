@@ -95,6 +95,7 @@ var MgoGenerator = module.exports = yeoman.generators.Base.extend({
           'default',
           'ushop',
           'empty',
+          'x6',
           'cps'
         ],
         default: this.params.type
@@ -151,6 +152,10 @@ var MgoGenerator = module.exports = yeoman.generators.Base.extend({
 
       case 'cps':
         this.template('tpl/cps/index.php', mpath + '/index.php');
+        break;
+
+      case 'x6':
+        this.template('tpl/x6/index.php', mpath + '/index.php');
         break;
 
       default:
